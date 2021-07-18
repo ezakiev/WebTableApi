@@ -26,5 +26,14 @@ namespace WebTable.Controllers
                           select member;
             return members;
         }
+
+        [HttpPost]
+        public IQueryable Post()
+        {
+            web_clientContext db = new web_clientContext();
+            var members = from member in db.Members
+                          select member;
+            return members;
+        }
     }
 }
