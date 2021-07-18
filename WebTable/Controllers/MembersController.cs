@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using WebTable.Repository;
 
 namespace WebTable.Controllers
 {
@@ -12,28 +13,75 @@ namespace WebTable.Controllers
     [ApiController]
     public class MembersController : ControllerBase
     {
-        private readonly IConfiguration configuration;
-        public MembersController(IConfiguration configuration)
+        IDbRepository dbRepository;
+        public MembersController(IDbRepository dbRepository)
         {
-            this.configuration = configuration;
+            this.dbRepository = dbRepository;
         }
 
-        [HttpGet]
-        public IQueryable Get()
+        //[HttpGet(Name = "GetAllItems")]
+        //public IQueryable<Member> GetEverything()
+        //{
+        //    return dbRepository.GetEverything();
+        //}
+
+        [HttpGet("{id}", Name = "GetMember")]
+        public IActionResult Get(int id)
         {
-            web_clientContext db = new web_clientContext();
-            var members = from member in db.Members
-                          select member;
-            return members;
+            Member member = dbRepository.Get(id);
+
+            if (member == null)
+                return NotFound();
+
+            return new ObjectResult(member);
         }
+
+            //[HttpGet(Name = "GetDates")]
+            //public dynamic GetDates()
+            //{
+            //    return dbRepository.GetDates();
+            //}
 
         [HttpPost]
-        public IQueryable Post()
+        public IActionResult Create([FromBody] Member member)
         {
-            web_clientContext db = new web_clientContext();
-            var members = from member in db.Members
-                          select member;
-            return members;
+            if (member == null)
+            {
+                return BadRequest();
+            }
+            dbRepository.Create(member);
+            return CreatedAtRoute("GetMember", new { id = member.Id }, member);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody] Member updatedMember)
+        {
+            if (updatedMember == null || updatedMember.Id != id)
+            {
+                return BadRequest();
+            }
+
+            var member = dbRepository.Get(id);
+            if (member == null)
+            {
+                return NotFound();
+            }
+
+            dbRepository.Update(updatedMember);
+            return RedirectToRoute("GetAllItems");
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var deletedMember = dbRepository.Delete(id);
+
+            if (deletedMember == null)
+            {
+                return BadRequest();
+            }
+
+            return new ObjectResult(deletedMember   );
         }
     }
 }
