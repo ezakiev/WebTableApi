@@ -19,16 +19,12 @@ namespace WebTable.Controllers
         }
 
         [HttpGet]
-        public JsonResult Get()
+        public IQueryable Get()
         {
-            using (web_clientContext db = new web_clientContext())
-            {
-                var members = from member in db.Members
-                              select new {id = member.Id, name = member.Name, sername = member.Sername,
-                              middle_name = member.MiddleName, nickname = member.Nickname, email = member.Email,
-                              registration_date = member.RegistrationDate, last_active_date = member.LastActivityDate};
-                return (JsonResult)members;
-            }
+            web_clientContext db = new web_clientContext();
+            var members = from member in db.Members
+                          select member;
+            return members;
         }
     }
 }
