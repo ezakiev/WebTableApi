@@ -12,13 +12,30 @@ namespace WebTable.Repository
         {
             this.context = context;
         }
-        public IQueryable<Member> GetEverything()
+        public dynamic GetEverything()
         {
-            return context.Members;
+            var query = from member in context.Members
+                        select new
+                        {
+                            Id = member.Id,
+                            Name = member.Name,
+                            Sername = member.Sername,
+                            MiddleName = member.MiddleName,
+                            Nickname = member.Nickname,
+                            Email = member.Email,
+                            RegistrationDate = member.RegistrationDate,
+                            LastActiveDate = member.LastActivityDate
+                        };
+            return query;
         }
-        public Member Get(int id)
+        public IQueryable<Member> Get(int id)
         {
-            return context.Members.Find(id);
+            //var query = from member in context.Members
+            //            where member.Id == id
+            //            select member;
+            //return query;
+            //return context.Members.Find(id);
+            return context.Set<Member>().AsQueryable();
         }
         public dynamic GetDates()
         {
@@ -34,26 +51,28 @@ namespace WebTable.Repository
         }
         public void Update(Member updatedMember)
         {
-            Member member = Get(updatedMember.Id);
-            member.Name = updatedMember.Name;
-            member.Sername = updatedMember.Sername;
-            member.MiddleName = updatedMember.MiddleName;
-            member.Nickname = updatedMember.Nickname;
-            member.Email = updatedMember.Email;
-            member.RegistrationDate = updatedMember.RegistrationDate;
-            member.LastActivityDate = updatedMember.LastActivityDate;
+            //Member member = Get(updatedMember.Id);
+            //member.Name = updatedMember.Name;
+            //member.Sername = updatedMember.Sername;
+            //member.MiddleName = updatedMember.MiddleName;
+            //member.Nickname = updatedMember.Nickname;
+            //member.Email = updatedMember.Email;
+            //member.RegistrationDate = updatedMember.RegistrationDate;
+            //member.LastActivityDate = updatedMember.LastActivityDate;
 
-            context.Members.Update(member);
-            context.SaveChanges();
+            //context.Members.Update(member);
+            //context.SaveChanges();
+            context.Set<Member>().Update(updatedMember);
         }
-        public Member Delete(int id)
+        public IQueryable<Member> Delete(int id)
         {
-            Member member = Get(id);
+            IQueryable<Member> member = Get(id);
 
             if (member != null)
             {
-                context.Members.Remove(member);
-                context.SaveChanges();
+                //todo: дописать метод
+                //context.Set<Member>().Remove(id);
+                //context.SaveChanges();
             }
 
             return member;

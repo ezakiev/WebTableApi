@@ -19,28 +19,28 @@ namespace WebTable.Controllers
             this.dbRepository = dbRepository;
         }
 
-        //[HttpGet(Name = "GetAllItems")]
-        //public IQueryable<Member> GetEverything()
-        //{
-        //    return dbRepository.GetEverything();
-        //}
-
-        [HttpGet("{id}", Name = "GetMember")]
-        public IActionResult Get(int id)
+        [HttpGet(Name = "GetAllItems")]
+        public dynamic GetEverything()
         {
-            Member member = dbRepository.Get(id);
-
-            if (member == null)
-                return NotFound();
-
-            return new ObjectResult(member);
+            return dbRepository.GetEverything();
         }
 
-            //[HttpGet(Name = "GetDates")]
-            //public dynamic GetDates()
-            //{
-            //    return dbRepository.GetDates();
-            //}
+        //[HttpGet("{id}", Name = "GetMember")]
+        //public IActionResult Get(int id)
+        //{
+        //    Member member = dbRepository.Get(id);
+
+        //    if (member == null)
+        //        return NotFound();
+
+        //    return new ObjectResult(member);
+        //}
+
+        //[HttpGet(Name = "GetDates")]
+        //public dynamic GetDates()
+        //{
+        //    return dbRepository.GetDates();
+        //}
 
         [HttpPost]
         public IActionResult Create([FromBody] Member member)

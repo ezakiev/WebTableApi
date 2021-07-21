@@ -7,11 +7,11 @@ namespace WebTable.Repository
 {
     public interface IDbRepository
     {
-        IQueryable<Member> GetEverything();
-        Member Get(int id);
+        dynamic GetEverything();
+        IQueryable<Member> Get(int id);
         dynamic GetDates();
         void Create(Member member);
         void Update(Member member);
-        Member Delete(int id);
+        IQueryable<Member> Delete(int id);
     }
 }
