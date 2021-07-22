@@ -9,7 +9,7 @@ using WebTable.Repository;
 
 namespace WebTable.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class MembersController : ControllerBase
     {
@@ -19,11 +19,11 @@ namespace WebTable.Controllers
             this.dbRepository = dbRepository;
         }
 
-        //[HttpGet(Name = "GetAllItems")]
-        //public IQueryable<Member> GetEverything()
-        //{
-        //    return dbRepository.GetEverything();
-        //}
+        [HttpGet(Name = "GetAllItems")]
+        public IQueryable<Member> GetEverything()
+        {
+            return dbRepository.GetEverything();
+        }
 
         [HttpGet("{id}", Name = "GetMember")]
         public IActionResult Get(int id)
@@ -36,11 +36,11 @@ namespace WebTable.Controllers
             return new ObjectResult(member);
         }
 
-            //[HttpGet(Name = "GetDates")]
-            //public dynamic GetDates()
-            //{
-            //    return dbRepository.GetDates();
-            //}
+        [HttpGet(Name = "GetDates")]
+        public dynamic GetDates()
+        {
+            return dbRepository.GetDates();
+        }
 
         [HttpPost]
         public IActionResult Create([FromBody] Member member)

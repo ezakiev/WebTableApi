@@ -43,6 +43,8 @@ namespace WebTable
 
             services.AddDbContext<web_clientContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IDbRepository, DbRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
