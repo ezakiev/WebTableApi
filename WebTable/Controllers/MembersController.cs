@@ -13,7 +13,7 @@ namespace WebTable.Controllers
     [ApiController]
     public class MembersController : ControllerBase
     {
-        IDbRepository dbRepository;
+        readonly IDbRepository dbRepository;
         public MembersController(IDbRepository dbRepository)
         {
             this.dbRepository = dbRepository;
