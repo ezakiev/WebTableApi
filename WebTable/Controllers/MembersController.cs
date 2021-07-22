@@ -46,9 +46,26 @@ namespace WebTable.Controllers
         public IActionResult Create([FromBody] Member member)
         {
             if (member == null)
-            {
-                return BadRequest();
-            }
+                ModelState.AddModelError("Null", "Not found input data");
+
+            if (member.RegistrationDate > DateTime.Now)
+                ModelState.AddModelError("RegDateTooBig", "The RegistrationDate is unacceptable");
+
+            if (member.LastActivityDate > DateTime.Now)
+                ModelState.AddModelError("LastActDateTooBig", "The LastActivityDate is unacceptable");
+
+            if (member.RegistrationDate < Convert.ToDateTime("01.01.2000").Date)
+                ModelState.AddModelError("RegDateTooSmall", "The RegistrationDate can not be earlier than 01.01.2000");
+
+            if (member.LastActivityDate < Convert.ToDateTime("01.01.2000").Date)
+                ModelState.AddModelError("LastActDateTooSmall", "The LastActivityDate can not be earlier than 01.01.2000");
+
+            if (member.LastActivityDate < member.RegistrationDate)
+                ModelState.AddModelError("LastActDateIsBiggerThanRegDate", "The LastActivivtyDate can not be bigger than RegistrationDate");
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             dbRepository.Create(member);
             return CreatedAtRoute("GetMember", new { id = member.Id }, member);
         }
@@ -56,16 +73,32 @@ namespace WebTable.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody] Member updatedMember)
         {
-            if (updatedMember == null || updatedMember.Id != id)
-            {
-                return BadRequest();
-            }
-
             var member = dbRepository.Get(id);
             if (member == null)
             {
                 return NotFound();
             }
+
+            if (updatedMember == null)
+                ModelState.AddModelError("Null", "Not found input data");
+
+            if (updatedMember.RegistrationDate > DateTime.Now)
+                ModelState.AddModelError("RegDateTooBig", "The RegistrationDate is unacceptable");
+
+            if (updatedMember.LastActivityDate > DateTime.Now)
+                ModelState.AddModelError("LastActDateTooBig", "The LastActivityDate is unacceptable");
+
+            if (updatedMember.RegistrationDate < Convert.ToDateTime("01.01.2000").Date)
+                ModelState.AddModelError("RegDateTooSmall", "The RegistrationDate can not be earlier than 01.01.2000");
+
+            if (updatedMember.LastActivityDate < Convert.ToDateTime("01.01.2000").Date)
+                ModelState.AddModelError("LastActDateTooSmall", "The LastActivityDate can not be earlier than 01.01.2000");
+
+            if (updatedMember.LastActivityDate < updatedMember.RegistrationDate)
+                ModelState.AddModelError("LastActDateIsBiggerThanRegDate", "The LastActivivtyDate can not be bigger than RegistrationDate");
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
             dbRepository.Update(updatedMember);
             return RedirectToRoute("GetAllItems");
@@ -77,11 +110,13 @@ namespace WebTable.Controllers
             var deletedMember = dbRepository.Delete(id);
 
             if (deletedMember == null)
-            {
-                return BadRequest();
-            }
+                ModelState.AddModelError("UserNotFound", $"There is no user with id = {id}");
 
-            return new ObjectResult(deletedMember   );
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return new ObjectResult(deletedMember);
         }
+
     }
 }
