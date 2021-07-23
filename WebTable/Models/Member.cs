@@ -10,18 +10,15 @@ namespace WebTable
     {
         public int Id { get; set; }
 
-        [Required]
         [StringLength(30, ErrorMessage = "The name must be shorter than 30 characters.")]
         public string Name { get; set; }
 
-        [Required]
         [StringLength(30, ErrorMessage = "The sername must be shorter than 30 characters.")]
         public string Sername { get; set; }
 
         [StringLength(30, ErrorMessage = "The middle-name must be shorter than 30 characters.")]
         public string MiddleName { get; set; }
 
-        [Required]
         [StringLength(15, ErrorMessage = "The nickname must be shorter than 15 characters.")]
         public string Nickname { get; set; }
 

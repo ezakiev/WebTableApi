@@ -100,7 +100,10 @@ namespace WebTable.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            dbRepository.Update(updatedMember);
+            member.RegistrationDate = updatedMember.RegistrationDate;
+            member.LastActivityDate = updatedMember.LastActivityDate;
+
+            dbRepository.Update(member);
             return RedirectToRoute("GetAllItems");
         }
 
