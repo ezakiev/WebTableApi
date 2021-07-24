@@ -58,5 +58,6 @@ namespace WebTable.Repository
 
             return member;
         }
+
     }
 }
