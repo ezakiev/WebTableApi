@@ -32,7 +32,6 @@ namespace WebTable.Controllers
 
             if (member == null)
                 return NotFound();
-
             return new ObjectResult(member);
         }
 
@@ -62,6 +61,18 @@ namespace WebTable.Controllers
 
             if (member.LastActivityDate < member.RegistrationDate)
                 ModelState.AddModelError("LastActDateIsBiggerThanRegDate", "The LastActivivtyDate can not be bigger than RegistrationDate");
+
+            if (member.Name == null)
+                ModelState.AddModelError("NoName", "The Name is required");
+
+            if (member.Sername == null)
+                ModelState.AddModelError("NoSername", "The sername is required");
+
+            if (member.Nickname == null)
+                ModelState.AddModelError("NoNickname", "The nickname is required");
+
+            if (member.Email == null)
+                ModelState.AddModelError("NoEmail", "The emal is required");
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -100,8 +111,11 @@ namespace WebTable.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            dbRepository.Update(updatedMember);
-            return RedirectToRoute("GetAllItems");
+            member.RegistrationDate = updatedMember.RegistrationDate;
+            member.LastActivityDate = updatedMember.LastActivityDate;
+
+            dbRepository.Update(member);
+            return Ok();
         }
 
         [HttpDelete("{id}")]

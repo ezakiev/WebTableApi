@@ -40,10 +40,3 @@ D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\bin\Debug\net5.0\Micr
 D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\bin\Debug\net5.0\Npgsql.dll
 D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
-D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\bin\Debug\net5.0\System.Web.Mvc.dll
-D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\bin\Debug\net5.0\System.Web.Razor.dll
-D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\bin\Debug\net5.0\System.Web.Helpers.dll
-D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\bin\Debug\net5.0\System.Web.WebPages.Deployment.dll
-D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\bin\Debug\net5.0\System.Web.WebPages.Razor.dll
-D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\bin\Debug\net5.0\System.Web.WebPages.dll
-D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\bin\Debug\net5.0\Microsoft.Web.Infrastructure.dll

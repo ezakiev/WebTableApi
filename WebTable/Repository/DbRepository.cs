@@ -35,14 +35,6 @@ namespace WebTable.Repository
         public void Update(Member updatedMember)
         {
             Member member = Get(updatedMember.Id);
-            member.Name = updatedMember.Name;
-            member.Sername = updatedMember.Sername;
-            member.MiddleName = updatedMember.MiddleName;
-            member.Nickname = updatedMember.Nickname;
-            member.Email = updatedMember.Email;
-            member.RegistrationDate = updatedMember.RegistrationDate;
-            member.LastActivityDate = updatedMember.LastActivityDate;
-
             context.Members.Update(member);
             context.SaveChanges();
         }
@@ -58,5 +50,6 @@ namespace WebTable.Repository
 
             return member;
         }
+
     }
 }
