@@ -8,9 +8,10 @@ export class Member extends Component{
     }
 
     refreshList(){
-        fetch(process.env.REACT_APP_API+'/GetDates')
+        fetch("https://localhost:5001/api/Members/GetDates")
         .then(response=>response.json())
         .then(data=>{
+            console.log(data)
             this.setState({deps:data});
         })
     }
