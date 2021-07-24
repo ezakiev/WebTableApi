@@ -11,7 +11,6 @@ export class Member extends Component{
         fetch("https://localhost:5001/api/Members/GetDates")
         .then(response=>response.json())
         .then(data=>{
-            console.log(data)
             this.setState({deps:data});
         })
     }
@@ -38,8 +37,8 @@ export class Member extends Component{
                         </thead>
                         <tbody>
                             {deps.map(mem=>
-                                <tr key={mem.MemberId}>
-                                    <td>{mem.MemberId}</td>
+                                <tr key={mem.Id}>
+                                    <td>{mem.Id}</td>
                                     <td>{mem.RegistrationDate}</td>
                                     <td>{mem.LastActivityDate}</td>
                                     <td>Edit / Delete</td>
