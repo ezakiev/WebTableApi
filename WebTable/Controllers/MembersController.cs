@@ -115,7 +115,7 @@ namespace WebTable.Controllers
             member.LastActivityDate = updatedMember.LastActivityDate;
 
             dbRepository.Update(member);
-            return RedirectToRoute("GetAllItems");
+            return Ok();
         }
 
         [HttpDelete("{id}")]
