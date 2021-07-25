@@ -28,5 +28,6 @@ namespace WebTable
 
         public DateTime? RegistrationDate { get; set; }
         public DateTime? LastActivityDate { get; set; }
+
     }
 }

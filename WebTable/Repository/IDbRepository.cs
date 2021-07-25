@@ -14,5 +14,6 @@ namespace WebTable.Repository
         void Update(Member member);
         Member Delete(int id);
         double CountRR7D();
+        Dictionary<string, int> BuildHistogram();
     }
 }
