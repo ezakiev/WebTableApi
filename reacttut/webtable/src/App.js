@@ -1,29 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
+import Table from "./components/Table/Table";
+import axios from "axios";
 
-import {Home} from './Home';
-import {Member} from './Member';
-import {Navigation} from './Navigation';
 
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+// let data = [
+//   { id: 1, name: "Gob", value: "2" },
+//   { id: 2, name: "Buster", value: "5" },
+//   { id: 3, name: "George Michael", value: "4" },
+// ];
 
-function App() {
+
+
+const App = () => {
+  const [data, setData] = useState([]);
+  const [metric, setMetric] = useState(23)
+  useEffect(async() => {
+    const result = await axios("https://localhost:5001/api/Members/GetDates");
+    setData(result.data)
+  }, [])
   return (
-    <BrowserRouter>
     <div className="container">
-      <h3 className="m-3 d-flex justify-content-center">
-        React JS Tutorial
-      </h3>
-
-      <Navigation/>
-
-      <Switch>
-        <Route path='/' component={Home} exact/>
-        <Route path='/member' component={Member}/>
-      </Switch>
+      <Table data={data}/>
+      <div className="container__metric">
+        <h3>Rolling Retention 7 Day:</h3>
+        <p>{metric}</p>
+      </div>
     </div>
-    </BrowserRouter>
   );
-}
+};
 
 export default App;

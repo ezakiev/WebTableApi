@@ -41,6 +41,12 @@ namespace WebTable.Controllers
             return dbRepository.GetDates();
         }
 
+        [HttpGet]
+        public double GetMetrics()
+        {
+            return dbRepository.CountRR7D();
+        }
+
         [HttpPost]
         public IActionResult Create([FromBody] Member member)
         {
@@ -60,7 +66,7 @@ namespace WebTable.Controllers
                 ModelState.AddModelError("LastActDateTooSmall", "The LastActivityDate can not be earlier than 01.01.2000");
 
             if (member.LastActivityDate < member.RegistrationDate)
-                ModelState.AddModelError("LastActDateIsBiggerThanRegDate", "The LastActivivtyDate can not be bigger than RegistrationDate");
+                ModelState.AddModelError("LastActDateIsBiggerThanRegDate", "The LastActivivtyDate can not be lower than RegistrationDate");
 
             if (member.Name == null)
                 ModelState.AddModelError("NoName", "The Name is required");
@@ -106,7 +112,7 @@ namespace WebTable.Controllers
                 ModelState.AddModelError("LastActDateTooSmall", "The LastActivityDate can not be earlier than 01.01.2000");
 
             if (updatedMember.LastActivityDate < updatedMember.RegistrationDate)
-                ModelState.AddModelError("LastActDateIsBiggerThanRegDate", "The LastActivivtyDate can not be bigger than RegistrationDate");
+                ModelState.AddModelError("LastActDateIsBiggerThanRegDate", "The LastActivivtyDate can not be lower than RegistrationDate");
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

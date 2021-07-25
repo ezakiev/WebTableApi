@@ -13,5 +13,6 @@ namespace WebTable.Repository
         void Create(Member member);
         void Update(Member member);
         Member Delete(int id);
+        double CountRR7D();
     }
 }

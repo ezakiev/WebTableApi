@@ -51,5 +51,23 @@ namespace WebTable.Repository
             return member;
         }
 
+        public double CountRR7D()
+        {
+            var members = from member in context.Members
+                          select new
+                          {
+                              Id = member.Id,
+                              RegistrationDate = member.RegistrationDate,
+                              LastActivityDate = member.LastActivityDate
+                          };
+            double active_users_amount = 0;
+            foreach (var member in members)
+                if (member.LastActivityDate - member.RegistrationDate >= TimeSpan.FromDays(7))
+                    active_users_amount++;
+
+            double rr7d = active_users_amount / Convert.ToDouble(context.Members.Count()) * 100;
+            return rr7d;
+        }
+
     }
 }
