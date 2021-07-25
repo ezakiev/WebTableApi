@@ -115,7 +115,54 @@ namespace WebTable.Controllers
             member.LastActivityDate = updatedMember.LastActivityDate;
 
             dbRepository.Update(member);
-            return Ok();
+            return Ok("Succesfully updated");
+        }
+
+        [HttpPut]
+        public IActionResult MultipleUpdate([FromBody] List<Member> updatedMembers)
+        {
+            for (int i = 0; i < updatedMembers.Count; i++)
+            {
+                Member member = updatedMembers[i];
+                Member member_from_db = dbRepository.Get(member.Id);
+
+                if (member_from_db == null)
+                {
+                    return NotFound($"There is no member with id = {member.Id}");
+                }
+
+                if (updatedMembers == null)
+                    ModelState.AddModelError("Null", "Not found input data");
+
+                if (member.RegistrationDate > DateTime.Now)
+                    ModelState.AddModelError("RegDateTooBig", "The RegistrationDate is unacceptable");
+
+                if (member.LastActivityDate > DateTime.Now)
+                    ModelState.AddModelError("LastActDateTooBig", "The LastActivityDate is unacceptable");
+
+                if (member.RegistrationDate < Convert.ToDateTime("01.01.2000").Date)
+                    ModelState.AddModelError("RegDateTooSmall", "The RegistrationDate can not be earlier than 01.01.2000");
+
+                if (member.LastActivityDate < Convert.ToDateTime("01.01.2000").Date)
+                    ModelState.AddModelError("LastActDateTooSmall", "The LastActivityDate can not be earlier than 01.01.2000");
+
+                if (member.LastActivityDate < member.RegistrationDate)
+                    ModelState.AddModelError("LastActDateIsBiggerThanRegDate", "The LastActivivtyDate can not be bigger than RegistrationDate");
+
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                member_from_db.RegistrationDate = member.RegistrationDate;
+                member_from_db.LastActivityDate = member.LastActivityDate;
+                updatedMembers[i] = member_from_db;
+            }
+
+            foreach(Member person in updatedMembers)
+            {
+                dbRepository.Update(person);
+            }
+
+            return Ok("Successfully updated");
         }
 
         [HttpDelete("{id}")]
