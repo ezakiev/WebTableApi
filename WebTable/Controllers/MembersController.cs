@@ -47,15 +47,14 @@ namespace WebTable.Controllers
             return dbRepository.CountRR7D();
         }
 
-        //todo: add GET method after histogram method will be finished
-        //[HttpGet]
-        //public IActionResult GetHistogramData()
-        //{
-        //    Dictionary<string, int> histogram_data = dbRepository.BuildHistogram();
-        //    if (histogram_data == null)
-        //        return NotFound("There is no any data");
-        //    return new ObjectResult(histogram_data);
-        //}
+        [HttpGet]
+        public IActionResult GetHistogramData()
+        {
+            Dictionary<string, int> histogram_data = dbRepository.BuildHistogram();
+            if (histogram_data == null)
+                return NotFound("There is no any data or some troubles with its getting");
+            return new ObjectResult(histogram_data);
+        }
 
         [HttpPost]
         public IActionResult Create([FromBody] Member member)
