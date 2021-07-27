@@ -1,22 +1,36 @@
+import { useEffect, useState } from "react";
 import Plot from "react-plotly.js";
+import axios from "axios";
+import "./Graph.css"
 
-var data = [
-  {
-    x: ["giraffes", "orangutans", "monkeys"],
-    y: [20, 14, 23],
-    type: "bar",
-  },
-];
 
 const Graph = () => {
+  const [param, setParams] = useState(0)
+  const [histData, setHistData] = useState({x: [], y: []})
+  useEffect(async () => {
+    const result = await axios("https://localhost:5001/api/Members/GetMetrics");
+    await setParams(result.data)
+  }, [param])
+
+  useEffect(() => {
+    fetch("https://localhost:5001/api/Members/GetHistogramData").then(res => res.json()).then(data =>{
+      let x = Object.keys(data);
+      let y = [];
+      for (let key of x) y.push(data[key]);
+      setHistData({x,y})
+    })
+  }, [])
   return (
     <div>
+      <div className="container__metric">
+         <h2>Rolling Retention 7 Day = {param}% </h2>
+      </div>
       <Plot
         data={[
           {
             type: "bar",
-            x: ["0-20", "20-40", "40-60"],
-            y: [10,20,30],
+            x: histData.x,
+            y: histData.y,
             // displayModeBar: false,
           },
         ]}
@@ -31,6 +45,7 @@ const Graph = () => {
         }}
         style={{ width: "80%", margin: "0 auto" }}
       />
+       
     </div>
   );
 };

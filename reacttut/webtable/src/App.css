@@ -1,9 +1,3 @@
-.container__metric {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-p {
-    margin-right: 20px;
+body{
+    background-color: rgb(238, 238, 238);
 }

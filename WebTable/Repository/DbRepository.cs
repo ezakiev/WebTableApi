@@ -27,8 +27,8 @@ namespace WebTable.Repository
             var members = from member in context.Members
                           let reg_date = member.RegistrationDate
                           let last_date = member.LastActivityDate
-                        select new { Id = member.Id, RegistrationDate = reg_date.ToString("d"), 
-                            LastActivityDate = last_date.ToString("d") };
+                        select new { Id = member.Id, RegistrationDate = reg_date.ToString("yyyy-MM-dd"), 
+                            LastActivityDate = last_date.ToString("yyyy-MM-dd") };
             return members;
         }
         public void Create(Member member)
@@ -71,7 +71,7 @@ namespace WebTable.Repository
                     active_users_amount++;
 
             double rr7d = active_users_amount / Convert.ToDouble(context.Members.Count()) * 100;
-            return rr7d;
+            return Math.Round(rr7d, 2);
         }
 
         public Dictionary<string, int> BuildHistogram()

@@ -12,7 +12,7 @@ const saveResults = async () => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(saveData),
-  }).then(res => console.log(res))
+  }).then(res => console.log(res)).catch(err => console.log(err))
   saveData = [];
 };
 
@@ -28,29 +28,33 @@ const Table = ({data}) => {
     blurToSave: true,
     afterSaveCell: onAfterSaveCell,
   };
-  console.log(data)
   return (
     <div>
+       <div className="table_styles">
       <BootstrapTable
         data={data}
         cellEdit={cellEditProp}
       >
-        <TableHeaderColumn isKey dataField="Id">
+        <TableHeaderColumn isKey dataField="Id" dataAlign="center" headerAlign="center" width="10%">
           MemberID
         </TableHeaderColumn>
-        <TableHeaderColumn dataField="RegistrationDate">RegistrationDate</TableHeaderColumn>
-        <TableHeaderColumn dataField="LastActivityDate">
+        <TableHeaderColumn dataField="RegistrationDate" dataAlign="center" headerAlign="center" width="45%">RegistrationDate</TableHeaderColumn>
+        <TableHeaderColumn dataField="LastActivityDate" dataAlign="center" headerAlign="center" width="45%">
           LastActivityDate
         </TableHeaderColumn>
       </BootstrapTable>
+      </div>
       <div className="btns_container">
-        <button className="btns_container__btn" onClick={saveResults}>
+        <button className="btns_container__el" onClick={saveResults}>
           Save
         </button>
-        <button className="btns_container__btn" onClick={() => setGraphActive(!graphActive)}>Calculate</button>
+        <button className="btns_container__el" onClick={() => setGraphActive(!graphActive)}>Calculate</button>
       </div>
+      <div>
       {graphActive ? <Graph></Graph> : null}
       </div>
+    </div>
+   
   );
 };
 

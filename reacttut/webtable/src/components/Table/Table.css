@@ -3,6 +3,24 @@
     justify-content: center;
 }
 
-.btns_container__btn {
+.btns_container__el {
     margin: 10px;
+    background-color: #4A9DFF;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    width: 189px;
+    height: 38px;
 }
+
+.btns_container__el:hover {
+    border: 3px dotted rgb(206, 29, 206);
+    background-color: rgba(0,0,0,0);
+}
+
+.table_styles{
+    background-color: white;
+    border-radius: 10px;
+}
+
+
