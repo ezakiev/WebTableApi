@@ -21,7 +21,7 @@ const Graph = () => {
     })
   }, [])
   return (
-    <div>
+    <div className="container">
       <div className="container__metric">
          <h2>Rolling Retention 7 Day = {param}% </h2>
       </div>
@@ -43,7 +43,7 @@ const Graph = () => {
         //     type: "date",
         //   },
         }}
-        style={{ width: "80%", margin: "0 auto" }}
+        style={{ width: "80%", margin: "5rem auto" }}
       />
        
     </div>

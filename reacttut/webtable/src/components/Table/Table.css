@@ -14,13 +14,15 @@
 }
 
 .btns_container__el:hover {
-    border: 3px dotted rgb(206, 29, 206);
-    background-color: rgba(0,0,0,0);
+    /* border: 3px dotted rgb(206, 29, 206); */
+    background-color: rgba(33, 216, 230);
 }
 
 .table_styles{
+    margin-top: 3rem;
     background-color: white;
     border-radius: 10px;
+    /* border: 10px solid white;*/
 }
 
 

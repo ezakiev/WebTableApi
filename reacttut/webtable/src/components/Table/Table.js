@@ -12,7 +12,7 @@ const saveResults = async () => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(saveData),
-  }).then(res => console.log(res)).catch(err => console.log(err))
+  }).catch(err => console.log(err))
   saveData = [];
 };
 
@@ -34,12 +34,13 @@ const Table = ({data}) => {
       <BootstrapTable
         data={data}
         cellEdit={cellEditProp}
+        bordered={false}
       >
-        <TableHeaderColumn isKey dataField="Id" dataAlign="center" headerAlign="center" width="10%">
+        <TableHeaderColumn isKey dataField="Id" dataAlign="center" headerAlign="center" width="10%" thStyle={{color: '#3C5AA8', opacity: '0.4'}} >
           MemberID
         </TableHeaderColumn>
-        <TableHeaderColumn dataField="RegistrationDate" dataAlign="center" headerAlign="center" width="45%">RegistrationDate</TableHeaderColumn>
-        <TableHeaderColumn dataField="LastActivityDate" dataAlign="center" headerAlign="center" width="45%">
+        <TableHeaderColumn dataField="RegistrationDate" dataAlign="center" headerAlign="center" width="45%" thStyle={{color: '#3C5AA8', opacity: '0.4'}}>RegistrationDate</TableHeaderColumn>
+        <TableHeaderColumn dataField="LastActivityDate" dataAlign="center" headerAlign="center" width="45%" thStyle={{color: '#3C5AA8',opacity: '0.4'}}>
           LastActivityDate
         </TableHeaderColumn>
       </BootstrapTable>
