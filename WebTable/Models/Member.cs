@@ -26,7 +26,8 @@ namespace WebTable
         [StringLength(50, ErrorMessage = "The email adress must be shorter than 50 characters.")]
         public string Email { get; set; }
 
-        public DateTime? RegistrationDate { get; set; }
-        public DateTime? LastActivityDate { get; set; }
+        public DateTime RegistrationDate { get; set; }
+        public DateTime LastActivityDate { get; set; }
+
     }
 }

@@ -1,29 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
+import Table from "./components/Table/Table";
+import axios from "axios";
 
-import {Home} from './Home';
-import {Member} from './Member';
-import {Navigation} from './Navigation';
-
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
-
-function App() {
+const App = () => {
+  const [data, setData] = useState([]);
+  useEffect(async() => {
+    const result = await axios("https://localhost:5001/api/Members/GetDates");
+    setData(result.data)
+  }, [])
   return (
-    <BrowserRouter>
     <div className="container">
-      <h3 className="m-3 d-flex justify-content-center">
-        React JS Tutorial
-      </h3>
-
-      <Navigation/>
-
-      <Switch>
-        <Route path='/' component={Home} exact/>
-        <Route path='/member' component={Member}/>
-      </Switch>
+      <Table data={data}/>
     </div>
-    </BrowserRouter>
   );
-}
+};
 
 export default App;
