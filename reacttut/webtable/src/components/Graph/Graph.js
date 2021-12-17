@@ -8,12 +8,12 @@ const Graph = () => {
   const [param, setParams] = useState(0)
   const [histData, setHistData] = useState({x: [], y: []})
   useEffect(async () => {
-    const result = await axios("https://localhost:5001/api/Members/GetMetrics");
+    const result = await axios("http://localhost:5000/api/Members/GetMetrics");
     await setParams(result.data)
   }, [param])
 
   useEffect(() => {
-    fetch("https://localhost:5001/api/Members/GetHistogramData").then(res => res.json()).then(data =>{
+    fetch("http://localhost:5000/api/Members/GetHistogramData").then(res => res.json()).then(data =>{
       let x = Object.keys(data);
       let y = [];
       for (let key of x) y.push(data[key]);

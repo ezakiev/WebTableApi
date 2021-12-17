@@ -15,7 +15,6 @@ D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\bin\Debug\net5.0\Newt
 D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\obj\Debug\net5.0\WebTable.csprojAssemblyReference.cache
 D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\obj\Debug\net5.0\WebTable.GeneratedMSBuildEditorConfig.editorconfig
 D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\obj\Debug\net5.0\WebTable.AssemblyInfoInputs.cache
 D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\obj\Debug\net5.0\WebTable.AssemblyInfo.cs
@@ -40,3 +39,4 @@ D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\bin\Debug\net5.0\Micr
 D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\bin\Debug\net5.0\Npgsql.dll
 D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+D:\VisualStudio\Проекты\TestTasks\WebTable\WebTable\obj\Debug\net5.0\WebTable.csprojAssemblyReference.cache

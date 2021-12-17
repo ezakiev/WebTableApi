@@ -5,7 +5,7 @@ import "./Table.css";
 
 let saveData = [];
 const saveResults = async () => {
-  fetch("https://localhost:5001/api/Members/MultipleUpdate", {
+  fetch("http://localhost:5000/api/Members/MultipleUpdate", {
     method: "PUT",
     mode: "cors",
     headers: {

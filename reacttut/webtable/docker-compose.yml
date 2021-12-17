@@ -1,0 +1,44 @@
+version: "3.3"
+
+services:
+  frontend:
+    container_name: frontend
+    restart: always
+    build: .
+    volumes:
+      - './:/app'
+      - '/app/node_modules'
+    ports:
+      - 3000:3000
+    command: npm start
+
+  # backend:
+  #   container_name: backend
+  #   restart: always
+  #   build: ../../WebTable
+  #   ports:
+  #     - 5000:80
+  #   links:
+  #     - db
+  #   environment:
+  #     - DB_CONNECTION_STRING="host=postgres;database=web_client;port=5431;username=proleum;password=secret"
+  #   depends_on:
+  #     - db
+  #   command: dotnet WebTable.dll
+
+  db:
+    container_name: postgres
+    image: postgres
+    environment:
+      - POSTGRES_DB=web_client
+      - POSTGRES_USER=proleum
+      - POSTGRES_PASSWORD=secret
+    restart: unless-stopped
+    ports:
+      - '5431:5432'
+    volumes:
+      - ./etc/initdb/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+
+ 
+

@@ -6,7 +6,7 @@ import axios from "axios";
 const App = () => {
   const [data, setData] = useState([]);
   useEffect(async() => {
-    const result = await axios("https://localhost:5001/api/Members/GetDates");
+    const result = await axios("http://localhost:5000/api/Members/GetDates");
     setData(result.data)
   }, [])
   return (
